@@ -1,0 +1,129 @@
+.bt{
+    width: 315px;
+    height: 50px;
+    border: none;
+    position: relative;
+    z-index: 111;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.336);
+    transition: 0.8s;
+    background-color: rgb(37, 37, 37);
+}
+
+.bt::after{
+    content: "";
+    background-color: none;
+    height: 100%;
+    box-sizing: border-box;
+    width: 1em;
+    position: absolute;
+    top: 0px;
+    z-index: -2;
+    transform: translate(-50%) skew(20deg) scaleX(1);
+    /* transition: 0.8s all ease-in; */
+    animation: 0.8s Funwidthbt forwards ;
+}
+.bt:hover::after{
+    animation: 0.8s Fwidthbt forwards ;
+}
+
+@keyframes Fwidthbt {
+    100% {
+        width: 340px;
+        background-color: rgb(37, 37, 37);
+    }
+}
+@keyframes Funwidthbt {
+    0% {
+        width: 340px;
+        background-color: rgb(37, 37, 37);
+    }
+    100% {
+        width: 1em;
+    }
+}
+
+.bt::before{
+    content: "";
+    background-color: none;
+    height: 100%;
+    box-sizing: border-box;
+    width: 1em;
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+    transform: translate(-50%) skew(20deg) scaleX(1);
+    /* transition: 0.8s all ease-in; */
+    animation: 0.8s Sunwidthbt forwards ;
+}
+
+.bt:hover::before{
+    animation: 0.8s Swidthbt forwards ;
+}
+
+@keyframes Swidthbt {
+    100% {
+        width: 220px;
+        background-color: rgb(80, 80, 80);
+    }
+}
+@keyframes Sunwidthbt {
+    0% {
+        background-color: rgb(80, 80, 80);
+        width: 220px;
+    }
+    100% {
+        width: 1em;
+    }
+}
+
+.tag-btn{
+    position: relative;
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tag-btn::before{
+    background-color: none;
+    content: "";
+    background-color: none;
+    height: 100%;
+    box-sizing: border-box;
+    width: 1em;
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+    transform: translate(-50%) skew(20deg) scaleX(1);
+    animation: 0.8s SSunwidthbt forwards ;
+}
+
+.bt:hover .tag-btn::before{
+    animation: 0.8s SSwidthbt forwards ;
+}
+
+@keyframes SSwidthbt {
+    0% {
+        transform: translate(-50%) skew(20deg) scaleX(1);
+        background-color: none;
+    }
+    100% {
+        transform: translate(-50%) skew(20deg) scaleX(8);
+        background-color: rgb(93, 93, 93);
+    }
+}
+@keyframes SSunwidthbt {
+    0% {
+        background-color: rgb(93, 93, 93);
+        transform: translate(-50%) skew(20deg) scaleX(8);
+    }
+    100% {
+        background-color: none;
+        transform: translate(-50%) skew(20deg) scaleX(1);
+        width: 1em;
+    }
+}
