@@ -10,7 +10,8 @@ mongoose.connect(`mongodb+srv://firasazzebi66:${DB}@cluster0.z3mogai.mongodb.net
 
 app.use(express.json())
 
-app.use("/re",require("./Routes/Users/index"))
+app.use(require("./Routes/Users/index"))
+
 
 
 app.listen(5000, (err)=>{
