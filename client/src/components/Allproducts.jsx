@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import '../styles/Allproducts.css'
 function Allproducts() {
     const article = useSelector((store)=>store)
-    console.log(article)
   if (!article) {
     return <div>Loading...</div>;
   }

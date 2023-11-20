@@ -15,9 +15,9 @@ module.exports =  async(req,res)=>{
             password : hashpas
         })
         await newUser.save()
-        console.log("ok")
         res.status(201).json({status : true , message : "the account registed succefully"})
     } catch (error) {
+        console.log(error)
         if (error.errors.email) {
             return res.status(401).json({status : false , error : error.errors.email.message})
         }

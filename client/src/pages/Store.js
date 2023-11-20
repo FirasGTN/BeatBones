@@ -2,9 +2,9 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getData, filter } from '../redux/action';
-import Allproducts from './Allproducts';
+import Allproducts from '../components/Allproducts';
 import '../styles/Store.css'
-import Button from './Button';
+import Button from '../components/Button';
 
 function Store() {
   const dispatch = useDispatch()

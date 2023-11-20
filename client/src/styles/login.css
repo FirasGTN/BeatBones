@@ -1,0 +1,34 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    height: 87vh;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 100px;
+    gap: 30px;
+}
+
+.login-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.register-sug{
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.145);
+}
+
+.login input{
+    background-color: rgba(0, 0, 0, 0.145);
+    border: none;
+    height: 30px;
+}
+
+.register-link{
+    color: black;
+}
