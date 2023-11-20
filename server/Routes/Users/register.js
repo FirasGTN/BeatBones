@@ -1,5 +1,5 @@
 const User = require("../../models/User")
-
+const bcrypt = require("bcrypt")
 module.exports =  async(req,res)=>{
     try {
         let {username,email,password} = req.body
@@ -7,10 +7,12 @@ module.exports =  async(req,res)=>{
         if (existemail){
             return res.status(401).json({status : false , message : "the email alredy exist"})
         }
+        const salt = await bcrypt.genSalt(10)
+        const hashpas = await bcrypt.hash(password,salt)
         const newUser = new User({
             username,
             email,
-            password
+            password : hashpas
         })
         await newUser.save()
         console.log("ok")
