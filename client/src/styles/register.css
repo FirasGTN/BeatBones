@@ -1,0 +1,19 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding-top: 30px;
+}
+
+.register-info{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 30%;
+}
+.register-info input{
+    background-color: rgba(0, 0, 0, 0.145);
+    border: 1px solid black;
+    height: 30px;
+}
