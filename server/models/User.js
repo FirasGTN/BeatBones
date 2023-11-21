@@ -1,34 +1,34 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   username: {
     type: String,
     required: [true, "the field of username is required"],
-    minlength: 4,
-    maxlength: 20,
-    unique: true,
-    match: /^[a-zA-Z0-9_]*$/,
-    trim: true,
+    match: [
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,20}$/,
+      "Invalid username. Usernames can only contain letters, numbers, and underscores.",
+    ],
   },
   email: {
     type: String,
     required: [true, "the field of email is required"],
-    unique: true,
-    trim: true,
-    lowercase: true,
-    match: /^\S+@\S+\.\S+$/,
+    match: [
+      /^\S+@\S+\.\S+$/,
+      "Invalid email format. Please enter a valid email address.",
+    ],
   },
   password: {
     type: String,
     required: [true, "the field of password is required"],
-    minlength: 8,
-    match:
+    match: [
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+{}\[\]:;<>,.?/~\\]).{8,}$/,
+      "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 8 characters long.",
+    ],
   },
   isuser: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 });
 
