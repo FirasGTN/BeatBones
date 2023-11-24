@@ -4,6 +4,7 @@
     align-items: center;
     gap: 100px;
     height: 87vh;
+    color: #9DB2BF;
 }
 
 .login{
@@ -20,15 +21,18 @@
 
 .register-sug{
     padding: 50px;
-    background-color: rgba(0, 0, 0, 0.145);
+    background-color: #9DB2BF;
+    color: #27374D;
 }
 
+
+
 .login input{
-    background-color: rgba(0, 0, 0, 0.145);
+    background-color: #9DB2BF;
     border: none;
     height: 30px;
 }
 
 .register-link{
-    color: black;
+    color: #27374D;
 }

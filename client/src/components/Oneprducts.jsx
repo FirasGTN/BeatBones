@@ -42,8 +42,8 @@ function Oneprducts() {
             {arr} 
           </ul>
           <div className='foot-container'>
-            <Button color="white" name="BUY NOW"/>
-            <Button color="white" name="ADD TO CART"/>
+            <Button name="BUY NOW"/>
+            <Button name="ADD TO CART"/>
           </div>
         </div>
       </div>

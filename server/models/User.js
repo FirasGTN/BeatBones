@@ -6,8 +6,8 @@ const userSchema = new Schema({
     type: String,
     required: [true, "the field of username is required"],
     match: [
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,20}$/,
-      "Invalid username. Usernames can only contain letters, numbers, and underscores.",
+      /^(?=.*[a-z])(?=.*[A-Z]).{5,20}$/,
+      "Invalid username. Usernames can only contain one lowercase letter, one uppercase letter and numbers.",
     ],
   },
   email: {
@@ -22,13 +22,13 @@ const userSchema = new Schema({
     type: String,
     required: [true, "the field of password is required"],
     match: [
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+{}\[\]:;<>,.?/~\\]).{8,}$/,
-      "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 8 characters long.",
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+      "Password must contain at least one lowercase letter, one uppercase letter, one digit, and be at least 8 characters long.",
     ],
   },
-  isuser: {
-    type: Boolean,
-    default: true,
+  role: {
+    type: String,
+    default: "user",
   },
 });
 

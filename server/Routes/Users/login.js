@@ -19,11 +19,12 @@ module.exports = async (req, res) => {
         message: " wrong email or password, please check again",
       });
     }
+    console.log();
     let token = await jwt.sign(
       {
         id: user._id,
         username: user.username,
-        email: email.username,
+        email: user.email,
       },
       key
     );
@@ -31,7 +32,7 @@ module.exports = async (req, res) => {
       status: true,
       data: {
         userId: user._id,
-        isUser: user.isuser,
+        role: user.role,
         token,
       },
       message: "sign in with successfully",
