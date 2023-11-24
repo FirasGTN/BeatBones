@@ -15,6 +15,7 @@ mongoose
 app.use(express.json());
 
 app.use(require("./Routes/Users/index"));
+app.use(require("./Routes/Admin/index"));
 
 app.listen(5000, (err) => {
   if (err) throw err;

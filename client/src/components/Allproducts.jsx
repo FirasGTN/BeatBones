@@ -1,29 +1,36 @@
-import React from 'react'
-import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { Link } from 'react-router-dom';
-import '../styles/Allproducts.css'
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import "../styles/Allproducts.css";
+import { Link } from "react-router-dom";
+
 function Allproducts() {
-    const article = useSelector((store)=>store)
-  if (!article) {
+  const article = useSelector((store) => store);
+  const [product, setProduct] = useState();
+
+  useEffect(() => {
+    if (article.product !== null && article.product.data.product) {
+      setProduct(article.product.data.product);
+    }
+  }, [article.product]); 
+
+  if (article.product === null) {
     return <div>Loading...</div>;
-  }
-  return (
-    <div className='car-container'  >
-      {article.map((art)=>
-      <div className='card'>
-        <Link  to= {`/store/${art.id}`} >
-          <div className='colorOne ' style={{backgroundColor:art.colorOne}}></div>
-          <div className='colorTwo ' style={{backgroundColor:art.colorTwo}}></div>
-          <div className='colorThree ' style={{backgroundColor:art.colorThree}}></div>
-          <figure>
-            <img src={art.image} alt="" />
-            <h1 className='prod prodname'>{art.name}</h1>
-          </figure>
-        </Link>
+  } else if (product) {
+    return (
+      <div className="car-container">
+        {product.map((art) => (
+          <div className="card" key={art.id}>
+            <Link to={`/store/${art.id}`}>
+              <figure>
+                <img src={art.image} alt="" />
+                <h1 className="prod prodname">{art.name}</h1>
+              </figure>
+            </Link>
+          </div>
+        ))}
       </div>
-      )}
-    </div>
-  )
+    );
+  }
 }
 
-export default Allproducts
+export default Allproducts;
