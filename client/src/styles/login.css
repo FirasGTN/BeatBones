@@ -4,7 +4,7 @@
     align-items: center;
     gap: 100px;
     height: 87vh;
-    color: #9DB2BF;
+    color: #6D5D6E;
 }
 
 .login{
@@ -21,18 +21,23 @@
 
 .register-sug{
     padding: 50px;
-    background-color: #9DB2BF;
-    color: #27374D;
+    background-color: #6D5D6E;
+    color: #F4EEE0;
 }
 
 
 
 .login input{
-    background-color: #9DB2BF;
     border: none;
     height: 30px;
+    background-color: #6d5d6e5e;
+    color: #F4EEE0;
 }
 
 .register-link{
-    color: #27374D;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #F4EEE0;
+    cursor: pointer;
 }

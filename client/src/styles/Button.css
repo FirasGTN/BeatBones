@@ -8,7 +8,7 @@
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.336);
   transition: 0.8s;
-  background-color: #27374d;
+  background-color: #4F4557;
 }
 
 .bt::after {
@@ -31,13 +31,13 @@
 @keyframes Fwidthbt {
   100% {
     width: 340px;
-    background-color: #27374d;
+    background-color: #453c4c;
   }
 }
 @keyframes Funwidthbt {
   0% {
     width: 340px;
-    background-color: #27374d;
+    background-color: #453c4c;
   }
   100% {
     width: 1em;
@@ -65,12 +65,12 @@
 @keyframes Swidthbt {
   100% {
     width: 220px;
-    background-color: #526d82;
+    background-color: #6D5D6E;
   }
 }
 @keyframes Sunwidthbt {
   0% {
-    background-color: #526d82;
+    background-color: #6D5D6E;
     width: 220px;
   }
   100% {
@@ -118,12 +118,12 @@
   }
   100% {
     transform: translate(-50%) skew(20deg) scaleX(8);
-    background-color: #9db2bf;
+    background-color: #F4EEE0;
   }
 }
 @keyframes SSunwidthbt {
   0% {
-    background-color: #9db2bf;
+    background-color: #F4EEE0;
     transform: translate(-50%) skew(20deg) scaleX(8);
   }
   100% {
