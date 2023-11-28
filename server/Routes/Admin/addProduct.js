@@ -10,9 +10,6 @@ module.exports = async (req, res) => {
             image,
             colorCount,
             color,
-            colorOne,
-            colorTwo,
-            colorThree,
           } = req.body;
           const newProd = new Product({
             name,
@@ -22,9 +19,6 @@ module.exports = async (req, res) => {
             image,
             colorCount,
             color,
-            colorOne,
-            colorTwo,
-            colorThree,
           });
           await newProd.save();
           return res
