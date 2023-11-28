@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import { MdLocalGroceryStore } from "react-icons/md";
 import { IoHome } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
 
 function Login({ onLogin }) {
   const [user, setUser] = useState({});
@@ -30,10 +31,16 @@ function Login({ onLogin }) {
       const response = await axios.post("/login", user);
       if (response && response.data) {
         setAccount("ACOS");
+        localStorage.setItem("id", response.data.data.userId);
+        localStorage.setItem("token", response.data.data.token);
+        if (response.data.data.role === "admin") {
+          localStorage.setItem("acc", "b");
+        } else {
+          localStorage.setItem("acc", "u");
+        }
         setTimeout(() => {
-          localStorage.setItem("token", response.data.data.token);
+          onLogin();
         }, 1000);
-        onLogin();
         dispatch(fetchUserLoginSuccess(response.data.message));
         setTimeout(() => {
           navigate("/store");
@@ -53,37 +60,67 @@ function Login({ onLogin }) {
     setAccount("ACOS");
     setTimeout(() => {
       navigate("/store");
-    }, 1000);
+    }, 900);
   };
 
   const homehandle = () => {
     setAccount("ACOH");
     setTimeout(() => {
       navigate("/");
-    }, 1000);
+    }, 900);
+  };
+  
+  const registerhandle = () => {
+    setAccount("ACOR");
+    setTimeout(() => {
+      navigate("/register");
+    }, 1500);
   };
   return (
     <div
       className={
-        account === "account" ? "account" : account === "ACOS" ? "ACOS" : "ACOH"
+        account === "account"
+          ? "account"
+          : account === "ACOS"
+          ? "ACOS"
+          : account === "ACOR"
+          ? "ACOR"
+          : "ACOH"
       }
     >
       <nav className="divone" onClick={() => homehandle()}>
-        {account === "account" || account === "ACOS" ? (
-          <IoHome size={50} color="#27374D" />
+        {account === "account" || account === "ACOS" || account === "ACOR" ? (
+          <IoHome
+            size={50}
+            color="#F4EEE0"
+            className={account === "ACOR" ? "ACOR-icons" : ""}
+          />
         ) : (
           <p></p>
         )}
       </nav>
       <nav className="divtwo storebt" onClick={() => storehandle()}>
-        {account === "account" || account === "ACOH" ? (
-          <MdLocalGroceryStore size={50} color="#27374D" />
+        {account === "account" || account === "ACOH" || account === "ACOR" ? (
+          <MdLocalGroceryStore
+            size={50}
+            color="#F4EEE0"
+            className={account === "ACOR" ? "ACOR-icons" : ""}
+          />
         ) : (
           <p></p>
         )}
       </nav>
       <nav className="divthree">
-        <div className="login-container">
+        {account === "ACOS" || account === "ACOH" ? (
+          <FaUser
+            size={45}
+            color="#F4EEE0"
+            className="icons-effect icons-effect-log"
+          />
+        ) : (
+          <p></p>
+        )}
+        <div className="login-container remove-effect">
           <div className="login">
             <div className="login-info">
               <h3>Email Address :</h3>
@@ -93,7 +130,7 @@ function Login({ onLogin }) {
               />
               <h3>Password :</h3>
               <input
-                type="text"
+                type="password"
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </div>
@@ -111,9 +148,9 @@ function Login({ onLogin }) {
               <li>Acces your history</li>
               <li>Track new orders</li>
             </ul>
-            <Link className="register-link" to="/register">
-              Create Account{" "}
-            </Link>
+            <button className="register-link" onClick={() => registerhandle()}>
+              Create Account
+            </button>
           </div>
         </div>
       </nav>

@@ -5,31 +5,39 @@ import { MdLocalGroceryStore } from "react-icons/md";
 import { IoHome } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { getAccount } from "../redux/action";
+import { FaUser } from "react-icons/fa";
 // import Login from "./Login"
 
 function Account() {
   let [account, setAccount] = useState("account");
+  let [users, setUsers] = useState();
+  let [role] = useState(localStorage.getItem("acc"));
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAccount());
-  }, []);
-
   const data = useSelector((store) => store);
-  const users = data.userShow?.data.users;
-  console.log(users);
+
+  useEffect(() => {
+    if (role === "b") {
+      dispatch(getAccount());
+      if (data.userShow) {
+        setUsers(data.userShow.data.users);
+      }
+    }
+  }, [data.userShow, dispatch]);
+
   const storehandle = () => {
     setAccount("ACOS");
     setTimeout(() => {
       navigate("/store");
-    }, 1000);
+    }, 900);
   };
 
   const homehandle = () => {
     setAccount("ACOH");
     setTimeout(() => {
       navigate("/");
-    }, 1000);
+    }, 900);
   };
   return (
     <div
@@ -39,19 +47,46 @@ function Account() {
     >
       <nav className="divone" onClick={() => homehandle()}>
         {account === "account" || account === "ACOS" ? (
-          <IoHome size={50} color="#27374D" />
+          <IoHome size={50} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
       </nav>
       <nav className="divtwo storebt" onClick={() => storehandle()}>
         {account === "account" || account === "ACOH" ? (
-          <MdLocalGroceryStore size={50} color="#27374D" />
+          <MdLocalGroceryStore size={50} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
       </nav>
-      <nav className="divthree">{/* <Login/> */}</nav>
+      <nav className="divthree">
+        {account === "ACOS" || account === "ACOH" ? (
+          <FaUser
+            size={45}
+            color="#F4EEE0"
+            className="icons-effect icons-effect-log"
+          />
+        ) : (
+          <p></p>
+        )}
+        <div className="remove-effect">
+          <h1>iefjgiorej irtgo ihrtihi rth tiughrtiuh oriprjeoiv</h1>
+          {/* { role === "b"  ? <h1>test</h1> : <h1>trye</h1>} */}
+          {/* {role === "b" && users ?
+            {users.map((user) => {
+              return (
+                <div>
+                <h1>{user.username}</h1>
+                <h1>{user.email}</h1>
+              </div>
+            );
+          })} : return (
+              <div className="user"><h1>user</h1></div>
+              )
+              
+        } */}
+        </div>
+      </nav>
     </div>
   );
 }

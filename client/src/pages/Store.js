@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { IoHome } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import ButtonTwo from "../components/ButtonTwo";
+import { MdLocalGroceryStore } from "react-icons/md";
 
 function Store() {
   const dispatch = useDispatch();
@@ -14,26 +15,37 @@ function Store() {
     dispatch(getData());
   });
   let [store, setStore] = useState("store");
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token] = useState(localStorage.getItem("token"));
+  const [userid] = useState(localStorage.getItem("id"));
+  const [role] = useState(localStorage.getItem("acc"));
+  console.log(userid);
+
   const navigate = useNavigate();
   const homehandle = () => {
     setStore("SCOH");
     setTimeout(() => {
       navigate("/");
-    }, 1000);
+    }, 900);
   };
   const accounthandle = () => {
     setStore("SCOA");
-    setTimeout(() => {
-      navigate("/account");
-    }, 1000);
+    if (role === "u") {
+      setTimeout(() => {
+        navigate(`/account/${userid}`);
+      }, 900);
+    } else {
+      setTimeout(() => {
+        navigate(`/admin/${userid}`);
+      }, 900);
+    }
   };
   const loginhandle = () => {
     setStore("SCOA");
     setTimeout(() => {
       navigate("/login");
-    }, 1000);
+    }, 900);
   };
+
   return (
     <div
       className={
@@ -42,13 +54,23 @@ function Store() {
     >
       <nav className="divone" onClick={() => homehandle()}>
         {store === "store" || store === "SCOA" ? (
-          <IoHome size={50} color="#27374D" />
+          <IoHome size={50} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
       </nav>
       <nav className="divtwo">
-        <div className="teststore">
+        {store === "SCOA" || store === "SCOH" ? (
+          <MdLocalGroceryStore
+            size={50}
+            color="#F4EEE0"
+            className="icons-effect"
+          />
+        ) : (
+          <p></p>
+        )}
+        <div className="teststore remove-effect">
+          {/* <div className="back-color"></div> */}
           <div className="filter">
             <h1>ALL PRODUCT</h1>
             <div className="filter-container">
@@ -74,7 +96,7 @@ function Store() {
         onClick={() => (token ? accounthandle() : loginhandle())}
       >
         {store === "store" || store === "SCOH" ? (
-          <FaUser size={50} color="#27374D" />
+          <FaUser size={45} color="#F4EEE0" />
         ) : (
           <p></p>
         )}

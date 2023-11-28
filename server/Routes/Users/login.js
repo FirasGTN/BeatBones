@@ -19,7 +19,6 @@ module.exports = async (req, res) => {
         message: " wrong email or password, please check again",
       });
     }
-    console.log();
     let token = await jwt.sign(
       {
         id: user._id,
