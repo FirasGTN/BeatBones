@@ -1,0 +1,123 @@
+.admin-dashbord {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+.admin-section-one {
+  background-color: #FFAD84;
+  width: 30%;
+  -webkit-animation: scale-up-hor-left 1s ease-in-out forwards;
+  /* display: flex; */
+  /* justify-content: center; */
+  animation: scale-up-hor-left 1s ease-in-out forwards;
+  color: #f4eee0;
+}
+.admin-section-two {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@-webkit-keyframes scale-up-hor-left {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 30%;
+  }
+}
+@keyframes scale-up-hor-left {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 30%;
+  }
+}
+
+.user-admin-tag {
+  display: flex;
+  padding-left: 30px;
+  gap: 35px;
+  height: 90px;
+  align-items: center;
+}
+.user-admin-tag span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 73%;
+}
+
+.users-managment {
+  /* width: 100%; */
+  /* display: flex;
+  justify-content: center; */
+  table-layout: auto;
+}
+
+.table-height {
+  height: 50vh;
+  border: 2px solid rgba(0, 0, 0, 0.326);
+  border-radius: 20px;
+  /* border: 2px solid red; */
+  overflow: scroll;
+}
+
+.top-table-users{
+  position: sticky;
+  top: 2px;
+
+}
+
+.users-managment td {
+  text-align: center;
+  padding: 10px;
+
+}
+.users-managment th {
+  padding: 10px;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #f4eee0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.326);
+}
+
+@media only screen and (max-width: 800px) {
+  .users-managment {
+    width: 100%;
+  }
+  .users-managment td {
+    display: block;
+    border: none;
+  }
+  .users-managment tr {
+    display: block;
+    border-top: 1px solid black;
+  }
+  .users-managment th {
+    display: none;
+  }
+}
+
+.nav-user {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 25px;
+}
+
+.userShow-bt {
+  background-color: transparent;
+  width: 10%;
+  border: 1px solid black;
+  height: 40px;
+}
+
+.nav-admin-man{
+  padding: 20px;
+  line-height: 50px;
+}
+.nav-admin-man h1{
+  cursor: pointer;
+}

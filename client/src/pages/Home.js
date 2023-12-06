@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { MdLocalGroceryStore } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import Navbar from "../components/Navbar";
+import StripeContainer from "../components/StripeContainer";
 
 function Home() {
   const navigate = useNavigate();
   let [home, setHome] = useState("home");
-  const [token, ] = useState(localStorage.getItem("token"));
-  const [userid, ] = useState(localStorage.getItem("id"));
-  const [role, ] = useState(localStorage.getItem("acc"));
-  const art = useSelector((art)=>art)
-  console.log(art)
+  const [token] = useState(localStorage.getItem("token"));
+  const [userid] = useState(localStorage.getItem("id"));
+  const [role] = useState(localStorage.getItem("acc"));
+  const art = useSelector((art) => art.product?.data.product);
+  const [allType, setAllType] = useState();
+  useEffect(() => {
+    let arre = [];
+    const encounteredTypes = {};
+    if (art) {
+      art.forEach((e) => {
+        if (!encounteredTypes[e.type]) {
+          arre.push(e);
+          encounteredTypes[e.type] = true;
+        }
+      });
+      console.log(arre);
+      if (arre.length > 0) {
+        setAllType(arre);
+      }
+    }
+  }, [art]);
 
   const storehandle = () => {
     setHome("HCOS");
@@ -26,8 +44,7 @@ function Home() {
       setTimeout(() => {
         navigate(`/account/${userid}`);
       }, 900);
-      
-    }else{
+    } else {
       setTimeout(() => {
         navigate(`/admin/${userid}`);
       }, 900);
@@ -45,22 +62,53 @@ function Home() {
     >
       <nav className="divone">
         {home === "HCOA" || home === "HCOS" ? (
-          <IoHome size={50} color="#F4EEE0" className="icons-effect"/>
+          <IoHome size={"3rem"} color="#F4EEE0" className="icons-effect" />
         ) : (
-          <p></p>
+          <p style={{ display: "none" }}></p>
         )}
         <div className="remove-effect">
-          <h1>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Exercitationem dolores accusantium ipsam sint autem ut vitae aut
-            possimus mollitia ex cumque, amet, qui saepe? Sapiente, eaque
-            temporibus? Necessitatibus, provident assumenda.
-          </h1>
+          <Navbar homeNavbar=" " />
+          <div className="h-secOne">
+            <img
+              src="https://images.prismic.io/skullcandy/3030e469-89ab-4dbe-9e0f-09aa3cfc6941_1_desktop+%2810%29.jpg?auto=compress,format"
+              alt="holiday"
+            />
+            <div>
+              <img
+                src="https://images.prismic.io/skullcandy/1a187ef9-dd02-45c9-a743-f96ac7919dbf_2+%287%29.jpg?auto=compress,format&rect=0,0,800,800&w=800&h=800"
+                alt="acid snow"
+              />
+              <img
+                src="https://images.prismic.io/skullcandy/f6e2c104-a63a-4384-8213-3ae35a02f6b6_3+%2811%29.jpg?auto=compress,format&rect=0,0,800,800&w=800&h=800"
+                alt="droop in"
+              />
+            </div>
+          </div>
+          <div className="h-secTwo">
+            {allType
+              ? allType.map((te) => (
+                  <div key={te._id} className="h-secTwo-item" onClick={()=>storehandle()}>
+                    <img src={te.image} alt="" />
+                    <h2>{te.type}</h2>
+                  </div>
+                ))
+              : console.log("test")}
+          </div>
+          <div className="h-secThree">
+            <img
+              src="https://images.prismic.io/skullcandy/2f93ad41-e574-4464-bbf4-28710b185848_P7_desktop+%283%29.jpg?auto=compress,format"
+              alt=""
+            />
+            <img
+              src="https://images.prismic.io/skullcandy/fd675176-b36b-4971-8007-86a30f4880ec_Image20231117115642.jpg?auto=compress,format"
+              alt=""
+            />
+          </div>
         </div>
       </nav>
       <nav className="divtwo" onClick={() => storehandle()}>
         {home === "home" || home === "HCOA" ? (
-          <MdLocalGroceryStore size={50} color="#F4EEE0" />
+          <MdLocalGroceryStore size={"3rem"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -70,7 +118,7 @@ function Home() {
         onClick={() => (token ? accounthandle() : loginhandle())}
       >
         {home === "home" || home === "HCOS" ? (
-          <FaUser size={45} color="#F4EEE0" />
+          <FaUser size={"2.7rem"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}

@@ -1,4 +1,4 @@
-import * as ActionType from "./ActionType"
+import * as ActionType from "./ActionType";
 import axios from "axios";
 
 export const getData = (payload) => (dispatch) => {
@@ -15,10 +15,22 @@ export const getData = (payload) => (dispatch) => {
 
 export const getAccount = (payload) => (dispatch) => {
   axios
-    .get("http://localhost:3000/account")
+    .get("http://localhost:3000/users")
     .then((response) => {
       dispatch({
         type: "GET_ACC",
+        payload: response,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const banUser = (payload) => (dispatch) => {
+  axios
+    .get("http://localhost:3000/banUser")
+    .then((response) => {
+      dispatch({
+        type: "BAN_USER",
         payload: response,
       });
     })

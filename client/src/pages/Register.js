@@ -57,7 +57,7 @@ function Register() {
         {register === "account" ||
         register === "ACOS" ||
         register === "ACOR" ? (
-          <IoHome size={50} color="#F4EEE0" />
+          <IoHome size={"3rem"} color="#F4EEE0"  />
         ) : (
           <p></p>
         )}
@@ -67,7 +67,7 @@ function Register() {
         {register === "account" ||
         register === "ACOH" ||
         register === "ACOR" ? (
-          <MdLocalGroceryStore size={50} color="#F4EEE0" />
+          <MdLocalGroceryStore size={"3rem"} color="#F4EEE0"  />
         ) : (
           <p></p>
         )}
@@ -75,8 +75,8 @@ function Register() {
       <nav className="divthree register-nav">
         {register === "ACOS" || register === "ACOH" ? (
           <FaUser
-            size={45}
-            color="#F4EEE0"
+            size={"2.7rem"}
+            color="#F4EEE0" 
             className="icons-effect icons-effect-log"
           />
         ) : (
@@ -101,7 +101,7 @@ function Register() {
             />
             <h3>Password :</h3>
             <input
-              type="text"
+              type="password"
               onChange={(e) =>
                 setUserReg({ ...userReg, password: e.target.value })
               }

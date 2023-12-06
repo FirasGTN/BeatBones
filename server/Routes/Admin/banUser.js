@@ -2,17 +2,22 @@ const User = require("../../models/User");
 
 module.exports = async (req, res) => {
   try {
-    let { userId } = req.query;
-    const bannedUser = await User.findByIdAndUpdate(userId, {
+    const { userBan } = req.body;
+    const bannedUser = await User.findOneAndUpdate(
+      { _id: userBan },
+      {
         $set: {
-        isBanned: true,
+          isBanned: true,
         },
-    },
-     { new: true}
-     );
-     res.status(200).json({ status: true, data: "User was banned seccessfully"});
+      },
+      { new: true }
+    );
+    console.log(req.body);
+    res
+      .status(200)
+      .json({ status: true, data: "User was banned seccessfully" });
   } catch (error) {
     if (error) throw error;
     res.status(401).json({ status: false, error });
   }
-};   
+};
