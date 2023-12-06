@@ -23,25 +23,51 @@
     filter: drop-shadow(5px 25px 25px rgba(0, 0, 0, 0.501));
 }
 
+@-webkit-keyframes fade-in-fwd {
+    0% {
+        -webkit-transform: translateZ(-80px);
+        transform: translateZ(-80px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+@keyframes fade-in-fwd {
+    0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+}
+100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+}
+}
+
+
 .card figure{
     height: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    -webkit-animation: fade-in-fwd 1.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in-fwd 1.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 .car-container{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 50px 30px;
-    padding: 50px 100px;
+    gap: 80px 30px;
+    padding: 50px 50px;
     text-decoration: none;
     color: black;
-    /* overflow: scroll; */
-    height: 305px;
-    /* border: 2px solid red; */
+    height: fit-content;
 }
 
 .card .prod{
@@ -56,4 +82,8 @@
 
 .card:hover .prod{
     opacity: 0;
+}
+
+.card .link-prod{
+    height: 350px;
 }

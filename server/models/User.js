@@ -30,6 +30,10 @@ const userSchema = new Schema({
     type: String,
     default: "user",
   },
+  isBanned: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = User = mongoose.model("User", userSchema);

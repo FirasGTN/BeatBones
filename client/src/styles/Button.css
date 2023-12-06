@@ -132,3 +132,26 @@
     width: 1em;
   }
 }
+
+.ban {
+  background-color: transparent;
+  border: 2px solid red;
+  color: red;
+  transition: 0.8s;
+  border-radius: 5px;
+}
+.ban:hover {
+  background-color: red;
+  color: white;
+}
+.submit {
+  background-color: transparent;
+  border: 2px solid #4BB543;
+  color: #4BB543;
+  transition: 0.8s;
+  border-radius: 5px;
+}
+.submit:hover {
+  background-color: #4BB543;
+  color: white;
+}

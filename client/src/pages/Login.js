@@ -69,7 +69,7 @@ function Login({ onLogin }) {
       navigate("/");
     }, 900);
   };
-  
+
   const registerhandle = () => {
     setAccount("ACOR");
     setTimeout(() => {
@@ -91,7 +91,7 @@ function Login({ onLogin }) {
       <nav className="divone" onClick={() => homehandle()}>
         {account === "account" || account === "ACOS" || account === "ACOR" ? (
           <IoHome
-            size={50}
+            size={"3rem"}
             color="#F4EEE0"
             className={account === "ACOR" ? "ACOR-icons" : ""}
           />
@@ -102,7 +102,7 @@ function Login({ onLogin }) {
       <nav className="divtwo storebt" onClick={() => storehandle()}>
         {account === "account" || account === "ACOH" || account === "ACOR" ? (
           <MdLocalGroceryStore
-            size={50}
+            size={"3rem"}
             color="#F4EEE0"
             className={account === "ACOR" ? "ACOR-icons" : ""}
           />
@@ -113,7 +113,7 @@ function Login({ onLogin }) {
       <nav className="divthree">
         {account === "ACOS" || account === "ACOH" ? (
           <FaUser
-            size={45}
+            size={"2.7rem"}
             color="#F4EEE0"
             className="icons-effect icons-effect-log"
           />
@@ -134,7 +134,7 @@ function Login({ onLogin }) {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </div>
-            {userLogin ? <p>{userLogin}</p> : error ? <p>{error}</p> : error}
+            {error ? <p>{error}</p> : error}
             <button className="bt" onClick={() => loginfn()}>
               <p className="tag-btn">LOGIN</p>
             </button>

@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from "react";
-import Allproducts from "../components/Allproducts";
-import "../styles/Store.css";
-import { Link, useNavigate } from "react-router-dom";
-import { getData } from "../redux/action/index";
-import { useDispatch } from "react-redux";
-import { IoHome } from "react-icons/io5";
+import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
-import ButtonTwo from "../components/ButtonTwo";
+import { IoHome } from "react-icons/io5";
 import { MdLocalGroceryStore } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import Allproducts from "../components/Allproducts";
+import Navbar from "../components/Navbar";
+import "../styles/Store.css";
 
 function Store() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getData());
-  });
+  const navigate = useNavigate();
   let [store, setStore] = useState("store");
   const [token] = useState(localStorage.getItem("token"));
   const [userid] = useState(localStorage.getItem("id"));
   const [role] = useState(localStorage.getItem("acc"));
-  console.log(userid);
+  const [productFilter, setProductFilter] = useState("all");
 
-  const navigate = useNavigate();
   const homehandle = () => {
     setStore("SCOH");
     setTimeout(() => {
@@ -45,16 +39,25 @@ function Store() {
       navigate("/login");
     }, 900);
   };
+  const OneProdShow = () => {
+    setStore("SCOP");
+  };
 
   return (
     <div
       className={
-        store === "store" ? "store" : store === "SCOH" ? "SCOH" : "SCOA"
+        store === "store"
+          ? "store"
+          : store === "SCOH"
+          ? "SCOH"
+          : store === "SCOP"
+          ? "SCOP"
+          : "SCOA"
       }
     >
       <nav className="divone" onClick={() => homehandle()}>
         {store === "store" || store === "SCOA" ? (
-          <IoHome size={50} color="#F4EEE0" />
+          <IoHome size={"3rem"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -62,33 +65,59 @@ function Store() {
       <nav className="divtwo">
         {store === "SCOA" || store === "SCOH" ? (
           <MdLocalGroceryStore
-            size={50}
+            size={"3rem"}
             color="#F4EEE0"
             className="icons-effect"
           />
         ) : (
-          <p></p>
+          <p style={{ display: "none" }}></p>
         )}
         <div className="teststore remove-effect">
-          {/* <div className="back-color"></div> */}
+          <Navbar storeNavbar=" " />
           <div className="filter">
-            <h1>ALL PRODUCT</h1>
             <div className="filter-container">
-              <Link to="/store/headphones">
-                <ButtonTwo name="HEADPHONES" color="white"></ButtonTwo>
-              </Link>
-              <Link to="/store/earbuds">
-                <ButtonTwo name="EARBUDS" color="white"></ButtonTwo>
-              </Link>
-              <Link to="/store/speakers">
-                <ButtonTwo name="SPEAKERS" color="white"></ButtonTwo>
-              </Link>
-              <Link to="/store/gaming">
-                <ButtonTwo name="GAMING" color="white"></ButtonTwo>
-              </Link>
+              <div className="button-container-1">
+                <span class="mas">HEADPHONES</span>
+                <button
+                  className="bt"
+                  onClick={() => setProductFilter("headphone")}
+                >
+                  HEADPHONES
+                </button>
+              </div>
+              <div className="button-container-1">
+                <span class="mas">EARBUDS</span>
+                <button
+                  className="bt"
+                  onClick={() => setProductFilter("earbuds")}
+                >
+                  EARBUDS
+                </button>
+              </div>
+              <div className="button-container-1">
+                <span class="mas">SPEAKERS</span>
+                <button
+                  className="bt"
+                  onClick={() => setProductFilter("speakers")}
+                >
+                  SPEAKERS
+                </button>
+              </div>
+              <div className="button-container-1">
+                <span class="mas">GAMING</span>
+                <button
+                  className="bt"
+                  onClick={() => setProductFilter("gaming")}
+                >
+                  GAMING
+                </button>
+              </div>
             </div>
           </div>
-          <Allproducts />
+          <Allproducts
+            productFilter={productFilter}
+            OneProdShow={OneProdShow}
+          />
         </div>
       </nav>
       <nav
@@ -96,7 +125,7 @@ function Store() {
         onClick={() => (token ? accounthandle() : loginhandle())}
       >
         {store === "store" || store === "SCOH" ? (
-          <FaUser size={45} color="#F4EEE0" />
+          <FaUser size={"2.7rem"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
