@@ -17,7 +17,13 @@ app.use(express.json());
 app.use(require("./Routes/Users/index"));
 app.use(require("./Routes/Admin/index"));
 
-app.listen(5000, (err) => {
+app.use((req, res) => {
+  res.send("API is running");
+});
+
+const PORT = process.env.PORT || 7766;
+
+app.listen(PORT, (err) => {
   if (err) throw err;
   console.log("server is up");
 });
