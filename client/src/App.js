@@ -47,7 +47,7 @@ function App() {
       {role === "u" ? (
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/account/:id" element={<Account />} />
+          <Route path="/account/:id" element={<Account onlogout={logout} />} />
           <Route path="/store" element={<Store />} />
           <Route path="/store/:id" element={<OneProd />} />
           {/* <Route path="/store/paiment" element={<StripeContainer />} /> */}

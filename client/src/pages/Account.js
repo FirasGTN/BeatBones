@@ -12,29 +12,36 @@ import ProductSetting from "../components/ProductSetting";
 import axios from "axios";
 
 function Account({ onlogout }) {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [accountData, setAccountData] = useState();
   let [account, setAccount] = useState("account");
   let [test, setTest] = useState(false);
   let [role] = useState(localStorage.getItem("acc"));
   let [componentShow, setComponentShow] = useState("account-set");
-  const [accountData, setAccountData] = useState();
-  const { id } = useParams();
-  // console.log(accountData)
+  let [total, setTotal] = useState();
+  let tt = 0;
 
-  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`/account/${id}`)
       .then((response) => {
         setAccountData(response.data);
+        if (accountData.cart) {
+          accountData.cart.product.map(
+            (pr) => (tt += Number(pr.price.$numberDouble))
+          );
+          setTotal(tt);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-    setTimeout(() => {
-      setTest(true);
-    }, 700);
-  });
-
+      setTimeout(() => {
+        setTest(true);
+      }, 700);
+    });
+    
   const storehandle = () => {
     setAccount("ACOS");
     setTimeout(() => {
@@ -166,25 +173,52 @@ function Account({ onlogout }) {
               <div>
                 {accountData ? (
                   <div className="user-container">
-                    <div className="user-tag">
-                      <FaUser size={"2.7rem"} color="#121212" />
-                      <h1>{accountData.data.username}</h1>
+                    <div className="user-tag-container">
+                      <div className="user-tag">
+                        <FaUser size={"2.7rem"} color="#121212" />
+                        <h1>{accountData.data.username}</h1>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => logout()}
+                      >
+                        <CiLogout size={"2.7rem"} />
+                      </div>
                     </div>
-                    <div className="cart-container">
-                      {accountData ? (
-                        accountData.cart.product.map((elt) => (
-                          <div className="cart-product" key={elt._id}>
-                            <img src={elt.image} alt="" />
-                            <h1>{elt.name}</h1>
-                            <h1>{elt.price.$numberDouble}</h1>
-                            {elt.color.map((cl)=>(
-                              <div style={{backgroundColor:cl}}></div>
-                            ))}
-                          </div>
-                        ))
-                      ) : (
-                        <p></p>
-                      )}
+                    <div className="cart">
+                      <div className="cart-container">
+                        {accountData.cart ? (
+                          accountData.cart.product.map((elt) => (
+                            <div className="cart-product">
+                              <img src={elt.image} alt="" />
+                              <div>
+                                <h1>{elt.name}</h1>
+                                <h1>{elt.price.$numberDouble} $</h1>
+                              </div>
+                              {elt.color.map((cl) => (
+                                <div style={{ backgroundColor: cl }}></div>
+                              ))}
+                            </div>
+                          ))
+                        ) : (
+                          <p>test</p>
+                        )}
+                      </div>
+                      <div className="facture">
+                        <div>
+                          <h1>2 Article</h1>
+                          <h1>Livraison</h1>
+                        </div>
+                        <div>
+                          <h1>{total}</h1>
+                          <h1>Gratuit</h1>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ) : (
