@@ -10,6 +10,11 @@
 .divthree {
   transition: 0.9s ease-in-out;
 }
+/* --------Shadow ------------------- */
+
+ .divone, .divtwo, .divthree {
+  box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.329) ;
+}
 
 .account nav , .store nav , .home nav {
    transition: 0.5S all;
@@ -35,11 +40,11 @@
 
 .account nav:nth-child(1) {
   width: 8%;
-  background-color: #ffe382;
+  background-color: #333333;
 }
 .account nav:nth-child(2) {
   width: 8%;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .account nav:nth-child(1):hover {
   width: 10%;
@@ -63,16 +68,16 @@
 
 .ACOS nav:nth-child(1) {
   width: 8%;
-  background-color: #ffe382;
+  background-color: #333333;
 }
 .ACOS nav:nth-child(2) {
   width: 90%;
-  background-color: #ffc47e;
+  background-color: #242424;
   animation: back-effect 1s forwards;
 }
 .ACOS nav:nth-child(3) {
   width: 8%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 
 .ACOH {
@@ -85,22 +90,22 @@
 
 .ACOH nav:nth-child(1) {
   width: 90%;
-  background-color: #ffe382;
+  background-color: #333333;
   animation: back-effect 1s forwards;
 }
 .ACOH nav:nth-child(2) {
   width: 8%;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .ACOH nav:nth-child(3) {
   width: 8%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 
 .ACOR {
   display: flex;
   min-height: 100vh;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .ACOR .remove-effect {
   display: none;
@@ -108,17 +113,17 @@
 
 .ACOR nav:nth-child(1) {
   width: 7.5%;
-  background-color: #ffe382;
+  background-color: #333333;
   /* animation: back-effect 1s forwards; */
 }
 .ACOR nav:nth-child(2) {
   width: 7.5%;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .ACOR nav:nth-child(3) {
   width: 80%;
   animation: ACOR-effect 1.5s forwards;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 
 @keyframes ACOR-effect {
@@ -132,6 +137,14 @@
     width: 85%;
     background-color: #f4eee0;
   }
+}
+
+.user-tag{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
 }
 
 /* ---------------------------Register */
@@ -162,7 +175,7 @@
 
 .store nav:nth-child(1) {
   width: 8%;
-  background-color: #ffe382; 
+  background-color: #333333; 
 }
 .store nav:nth-child(1):hover {
   width: 10%;
@@ -175,7 +188,7 @@
 
 .store nav:nth-child(3) {
   width: 8%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 .store nav:nth-child(3):hover {
   width: 10%;
@@ -196,16 +209,16 @@
 
 .SCOH nav:nth-child(1) {
   width: 90%;
-  background-color: #ffe382;
+  background-color: #333333;
   animation: back-effect 1s forwards;
 }
 .SCOH nav:nth-child(2) {
   width: 8%;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .SCOH nav:nth-child(3) {
   width: 8%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 
 .SCOA {
@@ -218,15 +231,15 @@
 
 .SCOA nav:nth-child(1) {
   width: 8%;
-  background-color: #ffe382;
+  background-color: #333333;
 }
 .SCOA nav:nth-child(2) {
   width: 8%;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .SCOA nav:nth-child(3) {
   width: 90%;
-  background-color: #ffad84;
+  background-color: #121212;
   animation: back-effect 1s forwards;
 }
 
@@ -240,7 +253,7 @@
 
 .SCOP nav:nth-child(1) {
   width: 50%;
-  background-color: #ffe382;
+  background-color: #333333;
 }
 .SCOP nav:nth-child(2) {
   width: 0%;
@@ -248,7 +261,7 @@
 }
 .SCOP nav:nth-child(3) {
   width: 50%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 
 .SCOPT {
@@ -270,14 +283,14 @@
 
 .SCOPT nav:nth-child(1) {
   width: 0%;
-  background-color: #ffe382;
+  background-color: #333333;
 }
 .SCOPT nav:nth-child(2) {
   width: 100%;
 }
 .SCOPT nav:nth-child(3) {
   width: 0%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 
 /* ---------------------------Home ---------------------------- */
@@ -312,11 +325,11 @@
 }
 .home nav:nth-child(2) {
   width: 8%;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .home nav:nth-child(3) {
   width: 8%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 .home nav:nth-child(2):hover {
   width: 10%;
@@ -335,16 +348,16 @@
 
 .HCOS nav:nth-child(1) {
   width: 8%;
-  background-color: #ffe382;
+  background-color: #333333;
 }
 .HCOS nav:nth-child(2) {
   width: 90%;
-  background-color: #ffc47e;
+  background-color: #242424;
   animation: back-effect 1s forwards;
 }
 .HCOS nav:nth-child(3) {
   width: 8%;
-  background-color: #ffad84;
+  background-color: #121212;
 }
 
 .HCOA {
@@ -357,15 +370,15 @@
 
 .HCOA nav:nth-child(1) {
   width: 8%;
-  background-color: #ffe382;
+  background-color: #333333;
 }
 .HCOA nav:nth-child(2) {
   width: 8%;
-  background-color: #ffc47e;
+  background-color: #242424;
 }
 .HCOA nav:nth-child(3) {
   width: 90%;
-  background-color: #ffad84;
+  background-color: #121212;
   animation: back-effect 1s forwards;
 }
 

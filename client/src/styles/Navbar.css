@@ -18,7 +18,7 @@
   height: 70px;
   border-radius: 50px;
   padding: 0px 35px;
-  background-color: #ffc47e;
+  background-color: #333333;
   z-index: 555;
 }
 
@@ -30,7 +30,7 @@
   height: 70px;
   border-radius: 50px;
   padding: 0px 35px;
-  background-color: #ffc47e;
+  background-color: #333333;
   position: absolute;
   z-index: 555;
 }

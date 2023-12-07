@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { MdLocalGroceryStore } from "react-icons/md";
 import { IoHome } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
@@ -9,16 +9,27 @@ import { CiLogout } from "react-icons/ci";
 import UsersManage from "../components/UsersManage";
 import AccountSetting from "../components/AccountSetting";
 import ProductSetting from "../components/ProductSetting";
+import axios from "axios";
 
 function Account({ onlogout }) {
   let [account, setAccount] = useState("account");
   let [test, setTest] = useState(false);
   let [role] = useState(localStorage.getItem("acc"));
   let [componentShow, setComponentShow] = useState("account-set");
+  const [accountData, setAccountData] = useState();
+  const { id } = useParams();
+  // console.log(accountData)
 
   const navigate = useNavigate();
-
   useEffect(() => {
+    axios
+      .get(`/account/${id}`)
+      .then((response) => {
+        setAccountData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setTimeout(() => {
       setTest(true);
     }, 700);
@@ -152,7 +163,34 @@ function Account({ onlogout }) {
             </div>
           ) : (
             <div>
-              <h1>user</h1>
+              <div>
+                {accountData ? (
+                  <div className="user-container">
+                    <div className="user-tag">
+                      <FaUser size={"2.7rem"} color="#121212" />
+                      <h1>{accountData.data.username}</h1>
+                    </div>
+                    <div className="cart-container">
+                      {accountData ? (
+                        accountData.cart.product.map((elt) => (
+                          <div className="cart-product" key={elt._id}>
+                            <img src={elt.image} alt="" />
+                            <h1>{elt.name}</h1>
+                            <h1>{elt.price.$numberDouble}</h1>
+                            {elt.color.map((cl)=>(
+                              <div style={{backgroundColor:cl}}></div>
+                            ))}
+                          </div>
+                        ))
+                      ) : (
+                        <p></p>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <h1></h1>
+                )}
+              </div>
             </div>
           )}
         </div>

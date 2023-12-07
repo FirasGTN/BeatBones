@@ -5,6 +5,7 @@ import { MdLocalGroceryStore } from "react-icons/md";
 import { IoHome } from "react-icons/io5";
 import { useNavigate } from "react-router";
 import { FaUser } from "react-icons/fa";
+import { IoIosArrowBack } from "react-icons/io";
 
 function Register() {
   const [userReg, setUserReg] = useState({});
@@ -40,7 +41,15 @@ function Register() {
     setTimeout(() => {
       navigate("/");
     }, 900);
+  }
+
+  const loginhandle = () => {
+    setregister("ACOR");
+    setTimeout(() => {
+      navigate("/login");
+    }, 1500);
   };
+    
   return (
     <div
       className={
@@ -57,7 +66,7 @@ function Register() {
         {register === "account" ||
         register === "ACOS" ||
         register === "ACOR" ? (
-          <IoHome size={"3rem"} color="#F4EEE0"  />
+          <IoHome size={"3rem"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -67,7 +76,7 @@ function Register() {
         {register === "account" ||
         register === "ACOH" ||
         register === "ACOR" ? (
-          <MdLocalGroceryStore size={"3rem"} color="#F4EEE0"  />
+          <MdLocalGroceryStore size={"3rem"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -76,13 +85,19 @@ function Register() {
         {register === "ACOS" || register === "ACOH" ? (
           <FaUser
             size={"2.7rem"}
-            color="#F4EEE0" 
+            color="#F4EEE0"
             className="icons-effect icons-effect-log"
           />
         ) : (
           <p></p>
         )}
         <div className="remove-effect register-container">
+          <IoIosArrowBack
+            color="black"
+            size={60}
+            className="back-icon-reg"
+            onClick={() => loginhandle()}
+          />
           <h1 style={{ fontSize: "3rem", margin: "0" }}>NEW ACCOUNT</h1>
           <div className="register-info">
             <h3>Username :</h3>
@@ -121,6 +136,6 @@ function Register() {
       </nav>
     </div>
   );
-}
+          }
 
-export default Register;
+export default Register

@@ -18,3 +18,16 @@
     border: 1px solid black;
     height: 30px;
 } 
+
+.back-icon-reg{
+    position: absolute;
+    top: 2.5%;
+    left: 16%;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.529));
+    transition: 0.8s;
+    cursor: pointer;
+}
+.back-icon-reg:hover{
+    filter: drop-shadow(7px 7px 8px rgba(0, 0, 0, 0.511));
+    transform: scale(1.08);
+}
