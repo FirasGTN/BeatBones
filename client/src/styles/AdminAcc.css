@@ -4,7 +4,7 @@
   height: 100vh;
 }
 .admin-section-one {
-  background-color: #FFAD84;
+  background-color: #121212;
   width: 30%;
   -webkit-animation: scale-up-hor-left 1s ease-in-out forwards;
   /* display: flex; */
@@ -12,6 +12,7 @@
   animation: scale-up-hor-left 1s ease-in-out forwards;
   color: #f4eee0;
 }
+
 .admin-section-two {
   width: 70%;
   display: flex;

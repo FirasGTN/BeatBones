@@ -53,4 +53,23 @@
     top: 0;
     filter: blur(15px);
   }
+  .back-icon{
+    top: 30px !important;
+    left: 40px !important;
+  }
+}
+
+
+.back-icon{
+  cursor: pointer;
+    position: relative;
+    top: 60px;
+    left: 70px;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.529));
+    transition: 0.8s;
+}
+
+.back-icon:hover{
+    filter: drop-shadow(7px 7px 8px rgba(0, 0, 0, 0.511));
+    transform: scale(1.08);
 }

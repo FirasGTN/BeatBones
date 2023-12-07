@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { faDollar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "../styles/Oneprducts.css";
 import axios from "axios";
 import "../styles/NewButton.scss";
 import ProdFilt from "../components/ALLPRODUCTFILES/ProdFilt";
+import { IoIosArrowBack } from "react-icons/io";
 
 function OneProd() {
   const { id } = useParams();
@@ -13,8 +14,13 @@ function OneProd() {
   const arr = [];
   const [isTablet, setTablet] = useState(false);
   let [store, setStore] = useState("SCOP");
+  const navigate = useNavigate()
 
   let backgroundImage = isTablet;
+
+  // const backHandel = ()=> {
+    
+  // }
 
   useEffect(() => {
     const mediaMatch = window.matchMedia("(max-width: 1000px)");
@@ -51,6 +57,12 @@ function OneProd() {
         <nav className="divtwo">
           <div>
             <div className="teststore remove-effect">
+              <IoIosArrowBack
+                color="white"
+                size={60}
+                className="back-icon"
+                onClick={() => navigate("/store")}
+              />
               <div class="cardt">
                 <div
                   className="card-item"
@@ -93,7 +105,7 @@ function OneProd() {
                 </div>
               </div>
               <div className="oneProd-secTwo">
-                <ProdFilt id = {id}/>
+                <ProdFilt id={id} />
               </div>
             </div>
           </div>
