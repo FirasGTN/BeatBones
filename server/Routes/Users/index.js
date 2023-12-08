@@ -16,7 +16,6 @@ route.post("/login", require("./login"));
 route.get("/store", require("./getProduct"));
 route.get("/store/:id", require("./getOneProduct"));
 route.put("/admin/", require("./UpdatePassword"));
-// route.get("/account/cart/:id", require("./getItemsCart"));
 route.get("/account/:id", require("./getAccount"));
 route.put("/deletitemcart", require("./DeleteItemCart"));
 

@@ -73,3 +73,18 @@
     filter: drop-shadow(7px 7px 8px rgba(0, 0, 0, 0.511));
     transform: scale(1.08);
 }
+
+.color{
+  width: 20px;
+  height: 20px;
+}
+
+.color-list{
+  display: flex;
+  gap: 20px;
+}
+
+.color-container{
+  display: flex;
+  gap: 20px;
+}

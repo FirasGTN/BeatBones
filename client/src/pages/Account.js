@@ -7,9 +7,10 @@ import "../styles/AdminAcc.css";
 // import { LuUserSquare2 } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
 import UsersManage from "../components/UsersManage";
-import AccountSetting from "../components/AccountSetting";
 import ProductSetting from "../components/ProductSetting";
 import axios from "axios";
+import { FaTrash } from "react-icons/fa6";
+import StripeContainer from "../components/StripeContainer";
 
 function Account({ onlogout }) {
   const navigate = useNavigate();
@@ -19,8 +20,12 @@ function Account({ onlogout }) {
   let [test, setTest] = useState(false);
   let [role] = useState(localStorage.getItem("acc"));
   let [componentShow, setComponentShow] = useState("account-set");
-  let [total, setTotal] = useState();
+  let [total, setTotal] = useState(0);
+  let [prodCount, setProdCount] = useState(0);
+  let [prodDeletId, SetProdDeletId] = useState({});
+  let [buyShow, setBuyShow] = useState(false);
   let tt = 0;
+  let pcount = 0;
 
   useEffect(() => {
     axios
@@ -28,20 +33,22 @@ function Account({ onlogout }) {
       .then((response) => {
         setAccountData(response.data);
         if (accountData.cart) {
-          accountData.cart.product.map(
-            (pr) => (tt += Number(pr.price.$numberDouble))
-          );
+          accountData.cart.product.map((pr) => ((tt += pr.price), pcount++));
           setTotal(tt);
+          setProdCount(pcount);
         }
       })
       .catch((err) => {
         console.log(err);
       });
-      setTimeout(() => {
-        setTest(true);
-      }, 700);
-    });
-    
+    setTimeout(() => {
+      setTest(true);
+    }, 700);
+    if (accountData && accountData.cart) {
+      SetProdDeletId({ ...prodDeletId, id: accountData.cart._id });
+    }
+  }, [id, accountData]);
+
   const storehandle = () => {
     setAccount("ACOS");
     setTimeout(() => {
@@ -67,6 +74,20 @@ function Account({ onlogout }) {
     }, 900);
   };
 
+  const deletItem = () => {
+    axios
+      .put(
+        `/deletitemcart`,
+        prodDeletId
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   // const banhandle = async () => {
   //   const ustest = { userBan };
   //   try {
@@ -87,14 +108,14 @@ function Account({ onlogout }) {
     >
       <nav className="divone" onClick={() => homehandle()}>
         {account === "account" || account === "ACOS" ? (
-          <IoHome size={"3rem"} color="#F4EEE0" />
+          <IoHome size={"3.5vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
       </nav>
       <nav className="divtwo storebt" onClick={() => storehandle()}>
         {account === "account" || account === "ACOH" ? (
-          <MdLocalGroceryStore size={"3rem"} color="#F4EEE0" />
+          <MdLocalGroceryStore size={"3.5vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -102,7 +123,7 @@ function Account({ onlogout }) {
       <nav className="divthree">
         {account === "ACOS" || account === "ACOH" ? (
           <FaUser
-            size={"2.7rem"}
+            size={"2.7vw"}
             color="#F4EEE0"
             className="icons-effect icons-effect-log"
           />
@@ -113,12 +134,16 @@ function Account({ onlogout }) {
           {role === "b" ? (
             <div className="admin-dashbord">
               <section className="admin-section-one">
-                {test === true ? (
+                {test === true && accountData ? (
                   <div>
                     <div className="user-admin-tag">
-                      <FaUser size={"2.7rem"} color="#F4EEE0" />
+                      <div>
+                        <FaUser size={"2.7vw"} color="#F4EEE0" />
+                      </div>
                       <span>
-                        <h2>FIRAS</h2>
+                        <h1 style={{ textTransform: "uppercase" }}>
+                          {accountData.data.username}
+                        </h1>
                         <div
                           style={{
                             display: "flex",
@@ -129,7 +154,7 @@ function Account({ onlogout }) {
                           onClick={() => logout()}
                         >
                           <CiLogout size={30} />
-                          <h3>Log out</h3>
+                          {/* <h3>Log out</h3> */}
                         </div>
                       </span>
                     </div>
@@ -160,7 +185,118 @@ function Account({ onlogout }) {
               </section>
               <section className="admin-section-two">
                 {componentShow === "account-set" ? (
-                  <AccountSetting />
+                  <div style={{ width: "100%" }}>
+                    {accountData ? (
+                      <div className="user-container">
+                        {/* <div className="user-tag-container">
+                          <div className="user-tag">
+                            <FaUser size={"2.7rem"} color="#121212" />
+                            <h1>{accountData.data.username}</h1>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "5px",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => logout()}
+                          >
+                            <CiLogout size={"2.7rem"} />
+                          </div>
+                        </div> */}
+                        <div
+                          className="cart"
+                          style={{
+                            margin: "0",
+                            height: "100vh",
+                            padding: "0px 0px 0px 20px",
+                          }}
+                        >
+                          <div className="cart-container">
+                            {accountData.cart ? (
+                              accountData.cart.product.map((elt) => (
+                                <div className="cart-product">
+                                  <img src={elt.image} alt="" />
+                                  <div className="cart-product-info">
+                                    <h1>{elt.name}</h1>
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                        paddingRight: "20px",
+                                      }}
+                                    >
+                                      <h1>{elt.price} $</h1>
+                                      <FaTrash
+                                        size={"1.5vw"}
+                                        color="red"
+                                        onClick={() => {
+                                          SetProdDeletId({
+                                            ...prodDeletId,
+                                            prodId: elt._id,
+                                          });
+                                          deletItem();
+                                        }}
+                                        style={{ cursor: "pointer" }}
+                                      />
+                                    </div>
+                                  </div>
+                                  {elt.color.map((cl) => (
+                                    <div style={{ backgroundColor: cl }}></div>
+                                  ))}
+                                </div>
+                              ))
+                            ) : (
+                              <p>test</p>
+                            )}
+                          </div>
+                          <div
+                            className="facture-container"
+                            style={{ paddingTop: "20px" }}
+                          >
+                            <div className="facture">
+                              <div
+                                className="facture-item"
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "0px",
+                                  alignItems: "start",
+                                }}
+                              >
+                                <div style={{ display: "flex", gap: "30px" }}>
+                                  <h1>{prodCount} Articles :</h1>
+                                  <h1>{parseFloat(total).toFixed(2)} $</h1>
+                                </div>
+                                <div style={{ display: "flex", gap: "30px" }}>
+                                  <h1>Livraison :</h1>
+                                  <h1>Gratuit</h1>
+                                </div>
+                              </div>
+                              <div className="facture-item">
+                                <h1>Total HT :</h1>
+                                <h1>{parseFloat(total).toFixed(2)} $</h1>
+                              </div>
+                            </div>
+                            <div
+                              class="button-container-2"
+                              onClick={() => setBuyShow(!buyShow)}
+                            >
+                              <span class="mas">Buy Now</span>
+                              <button>Buy Now</button>
+                            </div>
+                            <div style={{ marginTop: "30px" }}>
+                              {buyShow ? <StripeContainer /> : <p></p>}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <h1></h1>
+                    )}
+                  </div>
                 ) : componentShow === "users-set" ? (
                   <UsersManage />
                 ) : (
@@ -175,7 +311,7 @@ function Account({ onlogout }) {
                   <div className="user-container">
                     <div className="user-tag-container">
                       <div className="user-tag">
-                        <FaUser size={"2.7rem"} color="#121212" />
+                        <FaUser size={"2.7vw"} color="#121212" />
                         <h1>{accountData.data.username}</h1>
                       </div>
                       <div
@@ -187,18 +323,40 @@ function Account({ onlogout }) {
                         }}
                         onClick={() => logout()}
                       >
-                        <CiLogout size={"2.7rem"} />
+                        <CiLogout size={"2.7vw"} />
                       </div>
                     </div>
                     <div className="cart">
                       <div className="cart-container">
-                        {accountData.cart ? (
+                        {accountData.cart &&
+                        accountData.cart.product.length > 0 ? (
                           accountData.cart.product.map((elt) => (
                             <div className="cart-product">
                               <img src={elt.image} alt="" />
-                              <div>
+                              <div className="cart-product-info">
                                 <h1>{elt.name}</h1>
-                                <h1>{elt.price.$numberDouble} $</h1>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    paddingRight: "20px",
+                                  }}
+                                >
+                                  <h1>{elt.price} $</h1>
+                                  <FaTrash
+                                    size={"1.5vw"}
+                                    color="red"
+                                    onClick={() => {
+                                      SetProdDeletId({
+                                        ...prodDeletId,
+                                        prodId: elt._id,
+                                      });
+                                      deletItem();
+                                    }}
+                                    style={{ cursor: "pointer" }}
+                                  />
+                                </div>
                               </div>
                               {elt.color.map((cl) => (
                                 <div style={{ backgroundColor: cl }}></div>
@@ -206,17 +364,43 @@ function Account({ onlogout }) {
                             </div>
                           ))
                         ) : (
-                          <p>test</p>
+                          <p>No Products in Panie</p>
                         )}
                       </div>
-                      <div className="facture">
-                        <div>
-                          <h1>2 Article</h1>
-                          <h1>Livraison</h1>
+                      <div className="facture-container">
+                        <div className="facture">
+                          <div
+                            className="facture-item"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "0px",
+                              alignItems: "start",
+                            }}
+                          >
+                            <div style={{ display: "flex", gap: "30px" }}>
+                              <h1>{prodCount} Articles :</h1>
+                              <h1>{parseFloat(total).toFixed(2)} $</h1>
+                            </div>
+                            <div style={{ display: "flex", gap: "30px" }}>
+                              <h1>Livraison :</h1>
+                              <h1>Gratuit</h1>
+                            </div>
+                          </div>
+                          <div className="facture-item">
+                            <h1>Total HT :</h1>
+                            <h1>{parseFloat(total).toFixed(2)} $</h1>
+                          </div>
                         </div>
-                        <div>
-                          <h1>{total}</h1>
-                          <h1>Gratuit</h1>
+                        <div
+                          class="button-container-2"
+                          onClick={() => setBuyShow(!buyShow)}
+                        >
+                          <span class="mas">Buy Now</span>
+                          <button>Buy Now</button>
+                        </div>
+                        <div style={{ marginTop: "30px" }}>
+                          {buyShow ? <StripeContainer /> : <p></p>}
                         </div>
                       </div>
                     </div>

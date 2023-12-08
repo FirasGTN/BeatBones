@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getData = (payload) => (dispatch) => {
   axios
-    .get("http://localhost:3000/store")
+    .get("/store")
     .then((response) => {
       dispatch({
         type: "GET_DATA",
@@ -15,7 +15,7 @@ export const getData = (payload) => (dispatch) => {
 
 export const getAccount = (payload) => (dispatch) => {
   axios
-    .get("http://localhost:3000/users")
+    .get("/users")
     .then((response) => {
       dispatch({
         type: "GET_ACC",
@@ -27,7 +27,7 @@ export const getAccount = (payload) => (dispatch) => {
 
 export const banUser = (payload) => (dispatch) => {
   axios
-    .get("http://localhost:3000/banUser")
+    .get("/banUser")
     .then((response) => {
       dispatch({
         type: "BAN_USER",

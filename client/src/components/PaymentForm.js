@@ -39,12 +39,12 @@ export default function PaymentForm() {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(
-          "http://localhost:3000/store/paiment",
+          "/store/paiment",
           {
             amount: 1000,
             id,
           }
-          );
+        );
         if (response.data.success) {
           console.log("successful payment");
           setSuccess(true);
@@ -54,10 +54,10 @@ export default function PaymentForm() {
           setSuccess(false);
         }
       } catch (error) {
-        console.log("error");
+        console.log("Error Check Your Data");
       }
     } else {
-      console.log("error.message");
+      console.log("Error Check Your Data");
     }
   };
 

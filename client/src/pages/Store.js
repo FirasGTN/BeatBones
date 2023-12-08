@@ -57,7 +57,7 @@ function Store() {
     >
       <nav className="divone" onClick={() => homehandle()}>
         {store === "store" || store === "SCOA" ? (
-          <IoHome size={"3rem"} color="#F4EEE0" />
+          <IoHome size={"3.5vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -65,7 +65,7 @@ function Store() {
       <nav className="divtwo">
         {store === "SCOA" || store === "SCOH" ? (
           <MdLocalGroceryStore
-            size={"3rem"}
+            size={"3.5vw"}
             color="#F4EEE0"
             className="icons-effect"
           />
@@ -98,7 +98,7 @@ function Store() {
                 <span class="mas">SPEAKERS</span>
                 <button
                   className="bt"
-                  onClick={() => setProductFilter("speakers")}
+                  onClick={() => setProductFilter("speaker")}
                 >
                   SPEAKERS
                 </button>
@@ -125,7 +125,7 @@ function Store() {
         onClick={() => (token ? accounthandle() : loginhandle())}
       >
         {store === "store" || store === "SCOH" ? (
-          <FaUser size={"2.7rem"} color="#F4EEE0" />
+          <FaUser size={"2.7vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}

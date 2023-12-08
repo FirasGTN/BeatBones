@@ -7,17 +7,14 @@
   background-color: #121212;
   width: 30%;
   -webkit-animation: scale-up-hor-left 1s ease-in-out forwards;
-  /* display: flex; */
-  /* justify-content: center; */
   animation: scale-up-hor-left 1s ease-in-out forwards;
   color: #f4eee0;
 }
 
 .admin-section-two {
-  width: 70%;
-  display: flex;
+  max-width: 100%;
+  width: 100%;
   align-items: center;
-  justify-content: center;
 }
 
 @-webkit-keyframes scale-up-hor-left {
@@ -39,7 +36,7 @@
 
 .user-admin-tag {
   display: flex;
-  padding-left: 30px;
+  padding: 0px 30px;
   gap: 35px;
   height: 90px;
   align-items: center;
@@ -52,17 +49,17 @@
 }
 
 .users-managment {
-  /* width: 100%; */
-  /* display: flex;
-  justify-content: center; */
+  width: 100%;
   table-layout: auto;
 }
 
+table , td {
+  border-collapse: collapse;
+  border-top: 1px solid black;
+}
+
 .table-height {
-  height: 50vh;
-  border: 2px solid rgba(0, 0, 0, 0.326);
-  border-radius: 20px;
-  /* border: 2px solid red; */
+  height: 100vh;
   overflow: scroll;
 }
 
@@ -77,11 +74,9 @@
   padding: 10px;
 
 }
-.users-managment th {
+
+ th {
   padding: 10px;
-  border-radius: 20px 20px 0px 0px;
-  background-color: #f4eee0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.326);
 }
 
 @media only screen and (max-width: 800px) {
@@ -118,7 +113,34 @@
 .nav-admin-man{
   padding: 20px;
   line-height: 50px;
+  font-size: 1.1vw;
 }
 .nav-admin-man h1{
   cursor: pointer;
+}
+
+.ban{
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: 0.8s;
+}
+
+.ban:hover{
+  color: white;
+  background-color: red;
+  border: 1px solid white;
+}
+
+.submit{
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  transition: 0.8s;
+}
+
+.submit:hover{
+  color: white;
+  background-color: #4BB543;
+  border: 1px solid white;
 }

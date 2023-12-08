@@ -62,7 +62,7 @@ function Home() {
     >
       <nav className="divone">
         {home === "HCOA" || home === "HCOS" ? (
-          <IoHome size={"3rem"} color="#F4EEE0" className="icons-effect" />
+          <IoHome size={"3.5vw"} color="#F4EEE0" className="icons-effect" />
         ) : (
           <p style={{ display: "none" }}></p>
         )}
@@ -108,7 +108,7 @@ function Home() {
       </nav>
       <nav className="divtwo" onClick={() => storehandle()}>
         {home === "home" || home === "HCOA" ? (
-          <MdLocalGroceryStore size={"3rem"} color="#F4EEE0" />
+          <MdLocalGroceryStore size={"3.5vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -118,7 +118,7 @@ function Home() {
         onClick={() => (token ? accounthandle() : loginhandle())}
       >
         {home === "home" || home === "HCOS" ? (
-          <FaUser size={"2.7rem"} color="#F4EEE0" />
+          <FaUser size={"2.7vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}

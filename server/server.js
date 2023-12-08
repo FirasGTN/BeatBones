@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 require("dotenv").config();
+const cors = require("cors");
 
 const DB = process.env.DB;
 
@@ -13,7 +14,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.json());
-
+app.use(cors());
 app.use(require("./Routes/Users/index"));
 app.use(require("./Routes/Admin/index"));
 
