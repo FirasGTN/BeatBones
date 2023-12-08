@@ -22,7 +22,7 @@ function UsersManage() {
 
   const banhandle = () => {
     axios
-      .put("/banuser", {
+      .put("/api/banuser", {
         userBan,
       })
       .then((response) => {
