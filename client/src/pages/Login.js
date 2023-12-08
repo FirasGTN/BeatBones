@@ -28,7 +28,10 @@ function Login({ onLogin }) {
 
   const loginfn = async () => {
     try {
-      const response = await axios.post("/login", user);
+      const response = await axios.post(
+        "/login",
+        user
+      );
       if (response && response.data) {
         setAccount("ACOS");
         localStorage.setItem("id", response.data.data.userId);
@@ -91,7 +94,7 @@ function Login({ onLogin }) {
       <nav className="divone" onClick={() => homehandle()}>
         {account === "account" || account === "ACOS" || account === "ACOR" ? (
           <IoHome
-            size={"3rem"}
+            size={"3.5vw"}
             color="#F4EEE0"
             className={account === "ACOR" ? "ACOR-icons" : ""}
           />
@@ -102,7 +105,7 @@ function Login({ onLogin }) {
       <nav className="divtwo storebt" onClick={() => storehandle()}>
         {account === "account" || account === "ACOH" || account === "ACOR" ? (
           <MdLocalGroceryStore
-            size={"3rem"}
+            size={"3.5vw"}
             color="#F4EEE0"
             className={account === "ACOR" ? "ACOR-icons" : ""}
           />
@@ -113,7 +116,7 @@ function Login({ onLogin }) {
       <nav className="divthree">
         {account === "ACOS" || account === "ACOH" ? (
           <FaUser
-            size={"2.7rem"}
+            size={"2vw"}
             color="#F4EEE0"
             className="icons-effect icons-effect-log"
           />
@@ -135,9 +138,10 @@ function Login({ onLogin }) {
               />
             </div>
             {error ? <p>{error}</p> : error}
-            <button className="bt" onClick={() => loginfn()}>
-              <p className="tag-btn">LOGIN</p>
-            </button>
+            <div class="button-container-2" onClick={() => loginfn()}>
+              <span class="mas">Login</span>
+              <button>Login</button>
+            </div>
           </div>
           <div className="register-sug">
             <h3>New customer</h3>

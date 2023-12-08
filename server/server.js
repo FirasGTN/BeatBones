@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 require("dotenv").config();
+const cors = require("cors");
 
 const DB = process.env.DB;
 
@@ -13,11 +14,17 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.json());
-
+app.use(cors());
 app.use(require("./Routes/Users/index"));
 app.use(require("./Routes/Admin/index"));
 
-app.listen(5000, (err) => {
+app.use((req, res) => {
+  res.send("API is running");
+});
+
+const PORT = process.env.PORT || 7766;
+
+app.listen(PORT, (err) => {
   if (err) throw err;
   console.log("server is up");
 });

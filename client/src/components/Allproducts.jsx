@@ -87,8 +87,8 @@ function Allproducts(props) {
             ))}
           </div>
         );
-      case "speakers":
-        const speakers = product.filter((itm) => itm.type === "speakers");
+      case "speaker":
+        const speakers = product.filter((itm) => itm.type === "speaker");
         return (
           <div className="car-container">
             {speakers.map((art) => (

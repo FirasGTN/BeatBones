@@ -1,0 +1,46 @@
+.prod-setting{
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 100%;
+}
+
+.prod-s{
+    display: flex;
+    flex-direction: column ;
+    width: 100%;
+    font-size: 1vw;
+    max-width: 100%;
+}
+
+.prod-items{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+.prod-items h1{
+    width: 35%;
+}
+.prod-items input{
+    width: 35%;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.555);
+}
+.update-prod select , .delet-prod select{
+    width: 20%;
+}
+.update-prod select{
+    width: 20%;
+}
+.prod-items select{
+    background-color: transparent;
+}

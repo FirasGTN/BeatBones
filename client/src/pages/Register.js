@@ -41,7 +41,7 @@ function Register() {
     setTimeout(() => {
       navigate("/");
     }, 900);
-  }
+  };
 
   const loginhandle = () => {
     setregister("ACOR");
@@ -49,7 +49,7 @@ function Register() {
       navigate("/login");
     }, 1500);
   };
-    
+
   return (
     <div
       className={
@@ -66,7 +66,7 @@ function Register() {
         {register === "account" ||
         register === "ACOS" ||
         register === "ACOR" ? (
-          <IoHome size={"3rem"} color="#F4EEE0" />
+          <IoHome size={"3.5vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -76,7 +76,7 @@ function Register() {
         {register === "account" ||
         register === "ACOH" ||
         register === "ACOR" ? (
-          <MdLocalGroceryStore size={"3rem"} color="#F4EEE0" />
+          <MdLocalGroceryStore size={"3.5vw"} color="#F4EEE0" />
         ) : (
           <p></p>
         )}
@@ -84,7 +84,7 @@ function Register() {
       <nav className="divthree register-nav">
         {register === "ACOS" || register === "ACOH" ? (
           <FaUser
-            size={"2.7rem"}
+            size={"2.7vw"}
             color="#F4EEE0"
             className="icons-effect icons-effect-log"
           />
@@ -98,7 +98,7 @@ function Register() {
             className="back-icon-reg"
             onClick={() => loginhandle()}
           />
-          <h1 style={{ fontSize: "3rem", margin: "0" }}>NEW ACCOUNT</h1>
+          <h1 style={{ fontSize: "3.5vw", margin: "0" }}>NEW ACCOUNT</h1>
           <div className="register-info">
             <h3>Username :</h3>
             <input
@@ -129,13 +129,14 @@ function Register() {
           ) : (
             res
           )}
-          <button className="bt" onClick={() => registerfn()}>
-            <p className="tag-btn">CREATE ACCOUNT</p>
-          </button>
+          <div class="button-container-2" onClick={() => registerfn()}>
+            <span class="mas">Create Account</span>
+            <button>Create Account</button>
+          </div>
         </div>
       </nav>
     </div>
   );
-          }
+}
 
-export default Register
+export default Register;
