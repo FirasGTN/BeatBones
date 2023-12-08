@@ -29,7 +29,7 @@ function Account({ onlogout }) {
 
   useEffect(() => {
     axios
-      .get(`/account/${id}`)
+      .get(`/api/account/${id}`)
       .then((response) => {
         setAccountData(response.data);
         if (accountData.cart) {
@@ -77,7 +77,7 @@ function Account({ onlogout }) {
   const deletItem = () => {
     axios
       .put(
-        `/deletitemcart`,
+        `/api/deletitemcart`,
         prodDeletId
       )
       .then((response) => {

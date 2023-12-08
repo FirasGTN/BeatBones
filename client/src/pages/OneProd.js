@@ -25,7 +25,7 @@ function OneProd() {
 
   const addToCart = () => {
     axios
-      .post(`/additemcart`, {
+      .post(`/api/additemcart`, {
         userid: userid,
         product: obj,
       })
@@ -45,7 +45,7 @@ function OneProd() {
     const handler = (e) => setTablet(e.matches);
     mediaMatch.addListener(handler);
     axios
-      .get(`/store/${id}`)
+      .get(`/api/store/${id}`)
       .then((response) => {
         setObj(response.data.product);
       })

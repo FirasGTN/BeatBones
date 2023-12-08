@@ -38,13 +38,10 @@ export default function PaymentForm() {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post(
-          "/store/paiment",
-          {
-            amount: 1000,
-            id,
-          }
-        );
+        const response = await axios.post("/api/store/paiment", {
+          amount: 1000,
+          id,
+        });
         if (response.data.success) {
           console.log("successful payment");
           setSuccess(true);

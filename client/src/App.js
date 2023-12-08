@@ -13,13 +13,12 @@ import Account from "./pages/Account";
 import { useDispatch } from "react-redux";
 import { getData } from "./redux/action";
 import OneProd from "./pages/OneProd";
-
+import ConnexionRoutes from "./routes/ConnexionRoutes";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [iserid, setUserid] = useState(localStorage.getItem("id"));
   const [role, setRole] = useState(localStorage.getItem("acc"));
-
 
   const dispatch = useDispatch();
 

@@ -15,8 +15,8 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
-app.use(require("./Routes/Users/index"));
-app.use(require("./Routes/Admin/index"));
+app.use("/api", require("./Routes/Users/index"));
+app.use("/api", require("./Routes/Admin/index"));
 
 app.use((req, res) => {
   res.send("API is running");
