@@ -29,7 +29,7 @@ function Login({ onLogin }) {
   const loginfn = async () => {
     try {
       const response = await axios.post(
-        "/api/login",
+        "http://localhost:5000/api/login",
         user
       );
       if (response && response.data) {

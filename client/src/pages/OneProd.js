@@ -14,6 +14,7 @@ function OneProd() {
   const { id } = useParams();
   const [obj, setObj] = useState();
   const arr = [];
+  const [userlog, setUserlog] = useState(localStorage.getItem("token"));
   const [isTablet, setTablet] = useState(false);
   const [alertShow, setAlertShow] = useState(false);
   let [store, setStore] = useState("SCOP");
@@ -24,20 +25,24 @@ function OneProd() {
   let backgroundImage = isTablet;
 
   const addToCart = () => {
-    axios
-      .post(`/api/additemcart`, {
-        userid: userid,
-        product: obj,
-      })
-      .then((response) => {
-        setAlertShow(true);
-        setTimeout(() => {
-          setAlertShow(false);
-        }, 3000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (userlog) {
+      axios
+        .post(`http://localhost:5000/api/additemcart`, {
+          userid: userid,
+          product: obj,
+        })
+        .then((response) => {
+          setAlertShow(true);
+          setTimeout(() => {
+            setAlertShow(false);
+          }, 3000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      navigate("/login")
+    }
   };
 
   useEffect(() => {
@@ -45,7 +50,7 @@ function OneProd() {
     const handler = (e) => setTablet(e.matches);
     mediaMatch.addListener(handler);
     axios
-      .get(`/api/store/${id}`)
+      .get(`http://localhost:5000/api/store/${id}`)
       .then((response) => {
         setObj(response.data.product);
       })

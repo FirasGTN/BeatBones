@@ -5,5 +5,6 @@ route.post("/account/addproduct", require("./addProduct"));
 route.put("/updateProduct", require("./updateproduct"));
 route.delete("/deleteProduct/:deleteProductId", require("./deleteProduct"));
 route.put("/banuser", require("./banUser"));
+route.get("/users", require("./getusers"));
 
 module.exports = route;

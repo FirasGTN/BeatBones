@@ -30,7 +30,7 @@ export default function PaymentForm() {
 
   const handSubmit = async (e) => {
     e.preventDefault();
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
@@ -38,15 +38,17 @@ export default function PaymentForm() {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("/api/store/paiment", {
-          amount: 1000,
-          id,
-        });
+        const response = await axios.post(
+          "http://localhost:5000/api/store/paiment",
+          {
+            amount: 1000,
+            id,
+          }
+        );
         if (response.data.success) {
           console.log("successful payment");
           setSuccess(true);
-        }
-        else if (!response.data.success) {
+        } else if (!response.data.success) {
           console.log("invalid payment");
           setSuccess(false);
         }

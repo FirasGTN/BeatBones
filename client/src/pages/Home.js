@@ -5,7 +5,8 @@ import { FaUser } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
-import StripeContainer from "../components/StripeContainer";
+import imageHoliday from "../pic/imageHoliday.jpeg";
+import imageTmnt from "../pic/imageTmnt.jpeg";
 
 function Home() {
   const navigate = useNavigate();
@@ -36,6 +37,12 @@ function Home() {
     setHome("HCOS");
     setTimeout(() => {
       navigate("/store");
+    }, 900);
+  };
+  const typehandle = (type) => {
+    setHome("HCOS");
+    setTimeout(() => {
+      navigate(`search/${type}`);
     }, 900);
   };
   const accounthandle = () => {
@@ -69,10 +76,7 @@ function Home() {
         <div className="remove-effect">
           <Navbar homeNavbar=" " />
           <div className="h-secOne">
-            <img
-              src="https://images.prismic.io/skullcandy/3030e469-89ab-4dbe-9e0f-09aa3cfc6941_1_desktop+%2810%29.jpg?auto=compress,format"
-              alt="holiday"
-            />
+            <img src={imageHoliday} alt="holiday" />
             <div>
               <img
                 src="https://images.prismic.io/skullcandy/1a187ef9-dd02-45c9-a743-f96ac7919dbf_2+%287%29.jpg?auto=compress,format&rect=0,0,800,800&w=800&h=800"
@@ -87,7 +91,11 @@ function Home() {
           <div className="h-secTwo">
             {allType
               ? allType.map((te) => (
-                  <div key={te._id} className="h-secTwo-item" onClick={()=>storehandle()}>
+                  <div
+                    key={te._id}
+                    className="h-secTwo-item"
+                    onClick={() => typehandle(te.type)}
+                  >
                     <img src={te.image} alt="" />
                     <h2>{te.type}</h2>
                   </div>
@@ -96,7 +104,7 @@ function Home() {
           </div>
           <div className="h-secThree">
             <img
-              src="https://images.prismic.io/skullcandy/2f93ad41-e574-4464-bbf4-28710b185848_P7_desktop+%283%29.jpg?auto=compress,format"
+              src={imageTmnt}
               alt=""
             />
             <img

@@ -15,7 +15,7 @@ function Register() {
   const navigate = useNavigate();
   const registerfn = () => {
     axios
-      .post("/api/register", userReg)
+      .post("http://localhost:5000/api/register", userReg)
       .then((response) => {
         setErr();
         setRes(response);

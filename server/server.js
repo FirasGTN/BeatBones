@@ -19,7 +19,7 @@ app.use("/api", require("./Routes/Users/index"));
 app.use("/api", require("./Routes/Admin/index"));
 
 app.use((req, res) => {
-  res.send("API is running");
+  res.send("API is running good");
 });
 
 const PORT = process.env.PORT || 7766;
