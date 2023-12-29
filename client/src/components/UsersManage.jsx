@@ -10,7 +10,7 @@ function UsersManage() {
   let [role] = useState(localStorage.getItem("acc"));
   const dispatch = useDispatch();
   const data = useSelector((store) => store);
-
+  console.log(data)
   useEffect(() => {
     if (role === "b") {
       dispatch(getAccount());
@@ -22,7 +22,7 @@ function UsersManage() {
 
   const banhandle = () => {
     axios
-      .put("/api/banuser", {
+      .put("https://beat-bones-back-end.onrender.com/api/banuser", {
         userBan,
       })
       .then((response) => {

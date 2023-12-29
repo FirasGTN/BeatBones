@@ -73,7 +73,7 @@ function ProductSetting() {
 
   const addProduct = () => {
     axios
-      .post("/api/account/addproduct", newProduct)
+      .post("http://localhost:5000/api/account/addproduct", newProduct)
       .then((response) => {
         console.log(response);
       })
@@ -83,7 +83,7 @@ function ProductSetting() {
   };
   const updateProductFn = () => {
     axios
-      .put("/api/updateProduct", updateProduct)
+      .put("http://localhost:5000/api/updateProduct", updateProduct)
       .then((response) => {
         console.log(response);
       })
@@ -94,7 +94,7 @@ function ProductSetting() {
 
   const deleteProductFn = () => {
     axios
-      .delete(`/api/deleteProduct/${deleteProductId}`)
+      .delete(`http://localhost:5000/api/deleteProduct/${deleteProductId}`)
       .then((response) => {
         console.log(response);
       })

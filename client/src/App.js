@@ -1,19 +1,21 @@
 import "./App.css";
 import Home from "./pages/Home";
 // import Navbar from "./components/Navbar";
-import Oneprducts from "./components/Oneprducts";
-import Store from "./pages/Store";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useEffect, useState } from "react";
+import Store from "./pages/Store";
 // import { getData } from "./redux/action";
 // import { useDispatch } from "react-redux";
-import Account from "./pages/Account";
 import { useDispatch } from "react-redux";
-import { getData } from "./redux/action";
+import Account from "./pages/Account";
 import OneProd from "./pages/OneProd";
+import Search from "./pages/Search";
+import { getData } from "./redux/action";
+import AccountRoutes from "./routes/AccountRoutes";
 import ConnexionRoutes from "./routes/ConnexionRoutes";
+import ErrorRoute from "./routes/ErrorRoute";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -43,32 +45,39 @@ function App() {
   // });
   return (
     <div className="App">
-      {role === "u" ? (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/account/:id" element={<Account onlogout={logout} />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/store/:id" element={<OneProd />} />
-          {/* <Route path="/store/paiment" element={<StripeContainer />} /> */}
-        </Routes>
-      ) : role == "b" ? (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin/:id" element={<Account onlogout={logout} />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/store/:id" element={<OneProd />} />
-          {/* <Route path="/store/paiment" element={<StripeContainer />} /> */}
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/store/:id" element={<OneProd />} />
-          <Route path="/login" element={<Login onLogin={login} />} />
-          <Route path="/register" element={<Register />} />
-          {/* <Route path="/account/:id" element={<Account />} /> */}
-        </Routes>
-      )}
+
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <ConnexionRoutes>
+              <Login onLogin={login} />
+            </ConnexionRoutes>
+          }
+        />
+        <Route
+          path="/account/:id"
+          element={
+            <AccountRoutes>
+              <Account onlogout={logout} />
+            </AccountRoutes>
+          }
+        />
+        <Route
+          path="/admin/:id"
+          element={
+            <AccountRoutes>
+              <Account onlogout={logout} />
+            </AccountRoutes>
+          }
+        />
+        <Route path="/" element={<Home />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/search/:search" element={<Search />} />
+        <Route path="/store/:id" element={<OneProd />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<ErrorRoute />} />
+      </Routes>
     </div>
   );
 }
